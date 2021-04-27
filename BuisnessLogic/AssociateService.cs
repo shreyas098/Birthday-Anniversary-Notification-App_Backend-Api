@@ -49,11 +49,10 @@ namespace KiproshBirthdayCelebration.BuisnessLogic
             var output = default(List<UpcomingBirthdayModel>);
             var theDate = DateTimeOffset.Now.AddDays(1).Date;
             var query = _context.Associates
-                .Where(x => x.DOB > theDate)
+                .Where(x => (x.DOB.Month == theDate.Month) && (x.DOB.Day == theDate.Day))
                 .OrderByDescending(x => x.DOB)
                 .Select(x => x)
                 .ToList();
-
             if (query.Count > 0)
             {
                 output = new List<UpcomingBirthdayModel>();
