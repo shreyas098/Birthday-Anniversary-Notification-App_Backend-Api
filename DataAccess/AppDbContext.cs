@@ -7,5 +7,6 @@ namespace KiproshBirthdayCelebration.DataAccess
         {
         }
         public DbSet<Associates> Associates { get; set; }
+        public DbSet<Associate_Birthday_Wishes_Inputs> Associate_Birthday_Wishes_Inputs { get; set; }
     }
 }

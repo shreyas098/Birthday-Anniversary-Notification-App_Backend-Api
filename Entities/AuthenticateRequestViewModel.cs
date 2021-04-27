@@ -2,7 +2,7 @@
 
 namespace KiproshBirthdayCelebration.Entities
 {
-    public class AuthenticateRequest
+    public class AuthenticateRequestViewModel
     {
         [Required]
         public string Username { get; set; }

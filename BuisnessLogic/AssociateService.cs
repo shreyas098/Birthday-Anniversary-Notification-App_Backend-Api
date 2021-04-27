@@ -10,14 +10,14 @@ namespace KiproshBirthdayCelebration.BuisnessLogic
 {
     public class AssociateService : IAssociateService
     {
-        private readonly AppDbContext _context;
-        public AssociateService(AppDbContext context)
+        private readonly AppDbContext DbContext;
+        public AssociateService(AppDbContext dbContext)
         {
-            _context = context;
+            DbContext = dbContext;
         }
         public List<Associate> GetAllAssociates()
         {
-            return _context.Associates
+            return DbContext.Associates
                 .Select(x =>
                 new Associate
                 {
@@ -25,13 +25,14 @@ namespace KiproshBirthdayCelebration.BuisnessLogic
                     FirstName = x.FirstName,
                     LastName = x.LastName,
                     DateofBirth = x.DOB,
+                    ImageUrl = x.ImageUrl,
                     Role = x.Role
                 }).ToList();
         }
 
         public Associate GetAssociateById(int id)
         {
-            return _context.Associates
+            return DbContext.Associates
                 .Where(x => x.Id == id)
                 .Select(x =>
                 new Associate
@@ -40,35 +41,38 @@ namespace KiproshBirthdayCelebration.BuisnessLogic
                     FirstName = x.FirstName,
                     LastName = x.LastName,
                     DateofBirth = x.DOB,
+                    ImageUrl = x.ImageUrl,
                     Role = x.Role
                 }).FirstOrDefault();
         }
 
-        public List<UpcomingBirthdayModel> GetUpcomingBirthdays()
+        public List<UpcomingBirthdayViewModel> GetUpcomingBirthdays()
         {
             var theDate = DateTimeOffset.Now.AddDays(1).Date;
-            return _context.Associates
+            return DbContext.Associates
                  .Where(x => (x.DOB.Month >= theDate.Month) && (x.DOB.Day >= theDate.Day))
                  .OrderBy(x => x.DOB)
-                 .Select(x => new UpcomingBirthdayModel
+                 .Select(x => new UpcomingBirthdayViewModel
                  {
                      AssoicateId = x.Id,
                      AssociateName = $"{x.FirstName} {x.LastName}",
+                     ImageUrl = x.ImageUrl,
                      DOB = x.DOB
                  })
                  .ToList();
         }
 
-        public List<UpcomingBirthdayModel> GetCurrentBirthdays()
+        public List<UpcomingBirthdayViewModel> GetCurrentBirthdays()
         {
             var theDate = DateTimeOffset.Now.AddDays(1).Date;
-            return _context.Associates
+            return DbContext.Associates
                 .Where(x => (x.DOB.Month == theDate.Month) && (x.DOB.Day == theDate.Day))
                 .OrderBy(x => x.DOB)
-                .Select(x => new UpcomingBirthdayModel
+                .Select(x => new UpcomingBirthdayViewModel
                 {
                     AssoicateId = x.Id,
                     AssociateName = $"{x.FirstName} {x.LastName}",
+                    ImageUrl = x.ImageUrl,
                     DOB = x.DOB,
                 })
                 .ToList();

@@ -18,13 +18,13 @@ namespace JWTAuthentication.Controllers
 
         [AllowAnonymous]
         [HttpPost("token")]
-        public IActionResult Token([FromBody] AuthenticateRequest request)
+        public IActionResult Token([FromBody] AuthenticateRequestViewModel request)
         {
             var user = AuthService.AuthenticateUser(request.Username, request.Password);
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
-            var tokenString = AuthService.GenerateJSONWebToken(user);
+            var tokenString = AuthService.GetAccessToken(user);
             return Ok(new { token = tokenString });
         }
     }

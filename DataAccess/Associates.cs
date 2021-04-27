@@ -32,10 +32,19 @@ namespace KiproshBirthdayCelebration.DataAccess
         [Required]
         public string Password { get; set; }
 
+        [Column("AssociateEmailId")]
+        [Required]
+        [StringLength(500)]
+        public string Email { get; set; }
+
         [Column("BirthDate")]
         [Required]
         [StringLength(100)]
         public DateTimeOffset DOB { get; set; }
+
+        [Column("ImageUrl")]
+        [Required]
+        public string ImageUrl { get; set; }
 
         [Column("Role")]
         [Required]

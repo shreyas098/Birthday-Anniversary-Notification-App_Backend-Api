@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace WebApi.Entities
 {
@@ -10,5 +9,6 @@ namespace WebApi.Entities
         public string LastName { get; set; }
         public DateTimeOffset DateofBirth { get; set; }
         public string Role { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

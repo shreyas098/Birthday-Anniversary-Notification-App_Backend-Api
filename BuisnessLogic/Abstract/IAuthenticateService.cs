@@ -4,7 +4,7 @@ namespace KiproshBirthdayCelebration.BuisnessLogic.Abstract
 {
     public interface IAuthenticateService
     {
-        string GenerateJSONWebToken(Associate request);
+        string GetAccessToken(Associate request);
         Associate AuthenticateUser(string userName,string pwd);
     }
 }
