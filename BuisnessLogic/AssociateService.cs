@@ -46,29 +46,32 @@ namespace KiproshBirthdayCelebration.BuisnessLogic
 
         public List<UpcomingBirthdayModel> GetUpcomingBirthdays()
         {
-            var output = default(List<UpcomingBirthdayModel>);
             var theDate = DateTimeOffset.Now.AddDays(1).Date;
-            var query = _context.Associates
+            return _context.Associates
+                 .Where(x => (x.DOB.Month >= theDate.Month) && (x.DOB.Day >= theDate.Day))
+                 .OrderBy(x => x.DOB)
+                 .Select(x => new UpcomingBirthdayModel
+                 {
+                     AssoicateId = x.Id,
+                     AssociateName = $"{x.FirstName} {x.LastName}",
+                     DOB = x.DOB
+                 })
+                 .ToList();
+        }
+
+        public List<UpcomingBirthdayModel> GetCurrentBirthdays()
+        {
+            var theDate = DateTimeOffset.Now.AddDays(1).Date;
+            return _context.Associates
                 .Where(x => (x.DOB.Month == theDate.Month) && (x.DOB.Day == theDate.Day))
-                .OrderByDescending(x => x.DOB)
-                .Select(x => x)
-                .ToList();
-            if (query.Count > 0)
-            {
-                output = new List<UpcomingBirthdayModel>();
-                query.ForEach(o =>
+                .OrderBy(x => x.DOB)
+                .Select(x => new UpcomingBirthdayModel
                 {
-                    output.Add(
-                    new UpcomingBirthdayModel
-                    {
-                        AssoicateId = o.Id,
-                        AssociateName = $"{o.FirstName} {o.LastName}",
-                        DOB = o.DOB,
-                        CanSendMessage = (o.DOB.Date == theDate)
-                    });
-                });
-            }
-            return output;
+                    AssoicateId = x.Id,
+                    AssociateName = $"{x.FirstName} {x.LastName}",
+                    DOB = x.DOB,
+                })
+                .ToList();
         }
     }
 }

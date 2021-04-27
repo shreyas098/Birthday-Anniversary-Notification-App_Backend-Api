@@ -9,5 +9,6 @@ namespace KiproshBirthdayCelebration.BuisnessLogic.Abstract
         List<Associate> GetAllAssociates();
         Associate GetAssociateById(int id);
         List<UpcomingBirthdayModel> GetUpcomingBirthdays();
+        List<UpcomingBirthdayModel> GetCurrentBirthdays();
     }
 }

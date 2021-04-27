@@ -69,5 +69,18 @@ namespace KiproshBirthdayCelebration.Controllers
             }
         }
 
+        [HttpGet("getcurrentbirthdays")]
+        public IActionResult GetCurrentBirthdays()
+        {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                return Ok(Service.GetCurrentBirthdays());
+            }
+            else
+            {
+                return Unauthorized();
+            }
+        }
+
     }
 }
