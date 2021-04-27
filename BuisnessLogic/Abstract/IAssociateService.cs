@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using KiproshBirthdayCelebration.Entities;
+using System.Collections.Generic;
 using WebApi.Entities;
 
 namespace KiproshBirthdayCelebration.BuisnessLogic.Abstract
@@ -7,5 +8,6 @@ namespace KiproshBirthdayCelebration.BuisnessLogic.Abstract
     {
         List<Associate> GetAllAssociates();
         Associate GetAssociateById(int id);
+        List<UpcomingBirthdayModel> GetUpcomingBirthdays();
     }
 }

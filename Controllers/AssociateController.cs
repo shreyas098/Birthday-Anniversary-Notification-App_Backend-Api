@@ -55,7 +55,19 @@ namespace KiproshBirthdayCelebration.Controllers
                 return Unauthorized();
             }
         }
-
+       
+        [HttpGet("getupcomingbirthdays")]
+        public IActionResult GetUpcomingBirthdays()
+        {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                return Ok(Service.GetUpcomingBirthdays());
+            }
+            else
+            {
+                return Unauthorized();
+            }
+        }
 
     }
 }
