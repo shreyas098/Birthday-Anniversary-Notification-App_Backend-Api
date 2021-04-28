@@ -19,13 +19,13 @@ namespace KiproshBirthdayCelebration.BuisnessLogic
             AuthService = authService;
         }
 
-        public Associate AuthenticateUser(string userName, string pwd)
+        public AssociateViewModel AuthenticateUser(string userName, string pwd)
         {
             //$2a$11$s2zIFxyIzlv/YCBgPZRKHeIp8BgpaGmoJ7LDoibQxruR1Fz4i9SFe (Kiprosh@123)
             var account = DbContext.Associates.SingleOrDefault(x => x.UserName == userName);
             if (account != null && BC.Verify(pwd, account.Password))
             {
-                return new Associate()
+                return new AssociateViewModel()
                 {
                     Id = account.Id,
                     FirstName = account.FirstName,
@@ -38,7 +38,7 @@ namespace KiproshBirthdayCelebration.BuisnessLogic
                 return null;
             }
         }
-        public string GetAccessToken(Associate request)
+        public string GetAccessToken(AssociateViewModel request)
         {
             return AuthService.GenerateJSONWebToken(request);
         }

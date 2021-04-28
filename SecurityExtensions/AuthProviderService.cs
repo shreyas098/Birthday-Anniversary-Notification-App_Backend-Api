@@ -17,7 +17,7 @@ namespace KiproshBirthdayCelebration.SecurityExtensions
         {
             _config = config;
         }
-        public string GenerateJSONWebToken(Associate request)
+        public string GenerateJSONWebToken(AssociateViewModel request)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);

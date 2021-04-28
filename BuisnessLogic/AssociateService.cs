@@ -15,11 +15,11 @@ namespace KiproshBirthdayCelebration.BuisnessLogic
         {
             DbContext = dbContext;
         }
-        public List<Associate> GetAllAssociates()
+        public List<AssociateViewModel> GetAllAssociates()
         {
             return DbContext.Associates
                 .Select(x =>
-                new Associate
+                new AssociateViewModel
                 {
                     Id = x.Id,
                     FirstName = x.FirstName,
@@ -30,12 +30,12 @@ namespace KiproshBirthdayCelebration.BuisnessLogic
                 }).ToList();
         }
 
-        public Associate GetAssociateById(int id)
+        public AssociateViewModel GetAssociateById(int id)
         {
             return DbContext.Associates
                 .Where(x => x.Id == id)
                 .Select(x =>
-                new Associate
+                new AssociateViewModel
                 {
                     Id = x.Id,
                     FirstName = x.FirstName,

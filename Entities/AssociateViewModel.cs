@@ -2,7 +2,7 @@
 
 namespace WebApi.Entities
 {
-    public class Associate
+    public class AssociateViewModel
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
