@@ -50,7 +50,7 @@ namespace KiproshBirthdayCelebration.BuisnessLogic
         {
             var theDate = DateTimeOffset.Now.AddDays(1).Date;
             return DbContext.Associates
-                 .Where(x => (x.DOB.Month >= theDate.Month) && (x.DOB.Day >= theDate.Day))
+                 .Where(x => (x.DOB.Month >= theDate.Month) && (x.DOB.Day >= theDate.Day || x.DOB.Month > theDate.Month )) 
                  .OrderBy(x => x.DOB)
                  .Select(x => new UpcomingBirthdayViewModel
                  {
