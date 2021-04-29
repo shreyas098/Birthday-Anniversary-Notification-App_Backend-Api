@@ -2,6 +2,7 @@
 using KiproshBirthdayCelebration.DataAccess;
 using KiproshBirthdayCelebration.Entities;
 using System;
+using System.Linq;
 
 namespace KiproshBirthdayCelebration.BuisnessLogic
 {
@@ -17,6 +18,11 @@ namespace KiproshBirthdayCelebration.BuisnessLogic
         {
             if (currentUserId > 0 && model.ReceiverAssociateId > 0)
             {
+                DbContext.Associate_Birthday_Wishes_Inputs
+                     .RemoveRange(DbContext.Associate_Birthday_Wishes_Inputs
+                     .Where(b => b.BirthdayPersonId == model.ReceiverAssociateId
+                     && b.AssociateId == currentUserId).ToList());
+
                 var message = new Associate_Birthday_Wishes_Inputs
                 {
                     AssociateId = currentUserId,

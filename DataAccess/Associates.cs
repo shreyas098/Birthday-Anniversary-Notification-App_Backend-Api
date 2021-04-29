@@ -37,6 +37,11 @@ namespace KiproshBirthdayCelebration.DataAccess
         [StringLength(500)]
         public string Email { get; set; }
 
+        [Column("Designation")]
+        [Required]
+        [StringLength(100)]
+        public string Designation { get; set; }
+
         [Column("BirthDate")]
         [Required]
         [StringLength(100)]
