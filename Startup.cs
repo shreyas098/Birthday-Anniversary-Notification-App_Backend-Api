@@ -34,7 +34,7 @@ namespace KiproshBirthdayCelebration
 
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAllOrigins",
+                options.AddPolicy("AllowMyOrigin",
                     builder => builder.AllowAnyOrigin());
             });
 
@@ -119,7 +119,7 @@ namespace KiproshBirthdayCelebration
             }
 
             db.Database.EnsureCreated();
-            app.UseCors(builder => builder.AllowAnyOrigin());
+            app.UseCors("AllowMyOrigin");
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
