@@ -56,6 +56,7 @@ namespace KiproshBirthdayCelebration.BuisnessLogic
                  {
                      AssoicateId = x.Id,
                      AssociateName = $"{x.FirstName} {x.LastName}",
+                     Designation=x.Designation,
                      ImageUrl = x.ImageUrl,
                      DOB = x.DOB
                  })

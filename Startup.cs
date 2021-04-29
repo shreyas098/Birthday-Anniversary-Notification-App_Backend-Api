@@ -35,7 +35,7 @@ namespace KiproshBirthdayCelebration
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowMyOrigin",
-                    builder => builder.AllowAnyOrigin());
+                    builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
             });
 
             services.AddDbContext<AppDbContext>

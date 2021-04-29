@@ -10,6 +10,7 @@ namespace KiproshBirthdayCelebration.Entities
     {
         public int AssoicateId { get; set; }
         public string AssociateName { get; set; }
+        public string Designation { get; set; }
         public DateTimeOffset DOB { get; set; }
         public string ImageUrl { get; internal set; }
     }
