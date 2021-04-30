@@ -5,6 +5,12 @@
       "type": "mssql.azure",
       "connectionId": "VaultUri",
       "secretStore": null
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "BirthdayIdeaDb",
+      "suggestion": "true",
+      "ignored": "true"
     }
   }
 }

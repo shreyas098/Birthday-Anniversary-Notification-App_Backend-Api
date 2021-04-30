@@ -50,17 +50,16 @@ namespace KiproshBirthdayCelebration.BuisnessLogic
         {
             var theDate = DateTimeOffset.Now.AddDays(1).Date;
             return DbContext.Associates
-                 .Where(x => (x.DOB.Month >= theDate.Month) && (x.DOB.Day >= theDate.Day || x.DOB.Month > theDate.Month )) 
-                 .OrderBy(x => x.DOB)
+                 .Where(x => (x.DOB.Month >= theDate.Month) && (x.DOB.Day >= theDate.Day || x.DOB.Month > theDate.Month))
+                 .OrderBy(o => o.DOB.Month).ThenBy(o => o.DOB.Day)
                  .Select(x => new UpcomingBirthdayViewModel
                  {
                      AssoicateId = x.Id,
                      AssociateName = $"{x.FirstName} {x.LastName}",
-                     Designation=x.Designation,
+                     Designation = x.Designation,
                      ImageUrl = x.ImageUrl,
                      DOB = x.DOB
-                 })
-                 .ToList();
+                 }).ToList();
         }
 
         public List<UpcomingBirthdayViewModel> GetCurrentBirthdays()
